@@ -1,0 +1,19 @@
+{
+    "name": "Async.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ed7ff784cc9e87f4eb2f0a49af3e97a9",
+        "GUID:478a2357cc57436488a56e564b08d223"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
