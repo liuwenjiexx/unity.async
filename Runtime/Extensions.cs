@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Unity.Async
+namespace Async
 {
     public static partial class Extensions
     {
@@ -36,14 +36,14 @@ namespace Unity.Async
         public static T Timeout<T>(this T self, int millisecondsTimeout, bool throws = true)
             where T : ITimeoutable
         {
-            self.Timeout = new Yanmonet.Async.Timeout(millisecondsTimeout, throws);
+            self.Timeout = new Unity.Async.Timeout(millisecondsTimeout, throws);
             return self;
         }
 
         public static T Timeout<T>(this T self, int millisecondsTimeout, string error)
           where T : ITimeoutable
         {
-            self.Timeout = new Yanmonet.Async.Timeout(millisecondsTimeout, error);
+            self.Timeout = new Unity.Async.Timeout(millisecondsTimeout, error);
             return self;
         }*/
 

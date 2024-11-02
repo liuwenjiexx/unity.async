@@ -1,5 +1,5 @@
 
-namespace Unity.Async
+namespace Async
 {
     public struct MainThread
     {

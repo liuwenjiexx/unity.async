@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
-namespace Unity.Async
+namespace Async
 {
     class MainThreadAwaiter : IAwaiter
     {

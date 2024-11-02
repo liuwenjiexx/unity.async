@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Unity.Async
+namespace Async
 {
     /// <summary>
     /// 使用 <see cref="DateTime"/> 时间, 运行时和编辑器都可以等待时间

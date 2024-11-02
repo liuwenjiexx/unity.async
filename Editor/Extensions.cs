@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Unity.EditorCoroutines.Editor;
 using UnityEngine;
-using Unity.Async.Editor;
 
-namespace Unity.Async
+namespace Async.Editor
 {
     public static partial class Extensions
     {

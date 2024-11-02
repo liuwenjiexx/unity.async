@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 
-namespace Unity.Async
+namespace Async
 {
 
     public class CoroutineAwaiter : IAwaiter

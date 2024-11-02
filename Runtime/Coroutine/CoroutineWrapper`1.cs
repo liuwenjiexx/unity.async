@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Unity.Async
+namespace Async
 {
 
     class CoroutineWrapper<T>

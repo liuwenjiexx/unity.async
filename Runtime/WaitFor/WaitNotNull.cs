@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace Unity.Async
+namespace Async
 {
     public class WaitNotNull : IWaitable,/* ITimeoutable,*/ ICancelable
     {

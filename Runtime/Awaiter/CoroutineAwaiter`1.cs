@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Unity.Async
+namespace Async
 {
     public class CoroutineAwaiter<T> : IAwaiter<T>
     {

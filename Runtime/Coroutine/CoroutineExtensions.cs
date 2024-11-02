@@ -2,9 +2,9 @@ using System.Collections;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using UnityEngine;
-using Unity.Async;
 
-namespace Unity.Async
+
+namespace Async
 {
     public static partial class Extensions
     {

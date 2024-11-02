@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-namespace Unity.Async
+namespace Async
 {
     class MainThreadScheduler : IThreadScheduler
     {

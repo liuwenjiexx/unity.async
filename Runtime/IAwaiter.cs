@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-namespace Unity.Async
+namespace Async
 {
     public interface IAwaiter : INotifyCompletion
     {

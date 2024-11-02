@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-namespace Unity.Async
+namespace Async
 {
 
     class Pool<T>
