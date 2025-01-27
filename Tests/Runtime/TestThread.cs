@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.TestTools;
-using Unity.Async;
 using Assert = UnityEngine.Assertions.Assert;
 
-namespace Unity.Async.Tests
+namespace Async.Tests
 {
     public class TestThread : TestBase
     {

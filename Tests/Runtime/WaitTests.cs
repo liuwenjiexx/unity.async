@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace Unity.Async.Tests
+namespace Async.Tests
 {
     public class WaitTests : TestBase
     {

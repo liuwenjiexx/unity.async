@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using Unity.EditorCoroutines.Editor;
 using UnityEngine;
 using Random = UnityEngine.Random;
-namespace Unity.Async.Tests.Editor
+using Async.Editor;
+
+namespace Async.Tests.Editor
 {
     public class SyncScopeTest
     {

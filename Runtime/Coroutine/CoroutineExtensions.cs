@@ -50,6 +50,9 @@ namespace Async
         [DebuggerHidden]
         public static IAwaiter GetAwaiter(this CustomYieldInstruction instruction)
         {
+            //var waitable = StaticPool<CustomYieldInstructionWaitable>.Get();
+            //waitable.Initialize(instruction);
+            //return new Awaiter2(waitable, MainThreadScheduler.GetDefault());
             return GetAwaiterReturnVoid(instruction);
         }
 
@@ -63,6 +66,6 @@ namespace Async
             return awaiter;
         }
 
-   
+
     }
 }

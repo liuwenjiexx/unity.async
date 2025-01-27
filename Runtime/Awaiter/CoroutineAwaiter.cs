@@ -21,7 +21,7 @@ namespace Async
         private bool prevMain;
         IThreadScheduler prev;
 
-        public CoroutineAwaiter(IThreadScheduler scheduler=null)
+        public CoroutineAwaiter(IThreadScheduler scheduler = null)
         {
             if (scheduler == null)
                 scheduler = MainThreadScheduler.GetDefault();
@@ -65,7 +65,7 @@ namespace Async
         {
             isCompleted = true;
             exception = ex;
-
+            int threadId = Thread.CurrentThread.ManagedThreadId;
             if (continuation != null)
             {
                 var next = prev ?? scheduler;

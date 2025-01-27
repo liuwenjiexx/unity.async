@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using Unity.Async;
+using Async;
 using System.Threading;
 using UnityEngine.Profiling;
 using System;
 
-namespace Unity.Async.Tests
+namespace Async.Tests
 {
     public class TestCoroutine : TestBase
     {

@@ -9,11 +9,11 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.TestTools;
 using Unity;
-using Unity.Async;
-using Unity.Async.Editor;
+using Async;
+using Async.Editor;
 using Assert = UnityEngine.Assertions.Assert;
 using Debug = UnityEngine.Debug;
-namespace Unity.Async.Tests
+namespace Async.Tests
 {
     public class ThreadSwitch : TestBase
     {

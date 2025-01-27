@@ -19,7 +19,7 @@ namespace Async
         private bool prevMain;
         IThreadScheduler prev;
         private IWaitable waitable;
-       // private Timeout? timeout;
+        // private Timeout? timeout;
         private CancellationToken cancellationToken;
 
         public Awaiter(IWaitable waitable, IThreadScheduler scheduler = null)
@@ -87,6 +87,14 @@ namespace Async
         {
             isCompleted = true;
             this.exception = ex;
+            if (waitable != null)
+            {
+                if (waitable is IReusable reusable)
+                {
+                    reusable.Unused();
+                }
+                reusable = null;
+            }
 
             if (continuation != null)
             {
@@ -101,12 +109,11 @@ namespace Async
                             MainThreadScheduler.Current = next;
                             continuation();
                         }
-                        catch { throw; }
                         finally
                         {
                             MainThreadScheduler.Current = null;
                         }
-                    },null);
+                    }, null);
                 }
                 else
                 {
@@ -119,7 +126,6 @@ namespace Async
                                 MainThreadScheduler.Current = next;
                                 continuation();
                             }
-                            catch { throw; }
                             finally
                             {
                                 MainThreadScheduler.Current = null;
@@ -133,7 +139,6 @@ namespace Async
                             MainThreadScheduler.Current = next;
                             continuation();
                         }
-                        catch { throw; }
                         finally
                         {
                             MainThreadScheduler.Current = null;
@@ -163,13 +168,13 @@ namespace Async
                     else
                     {
                         cancellationToken.ThrowIfCancellationRequested();
-                       /* if (timeout.HasValue)
-                        {
-                            if (timeout.Value.IsTimeout())
-                            {
-                                Complete(null);
-                            }
-                        }*/
+                        /* if (timeout.HasValue)
+                         {
+                             if (timeout.Value.IsTimeout())
+                             {
+                                 Complete(null);
+                             }
+                         }*/
                     }
                 }
                 catch (Exception ex)
@@ -184,7 +189,7 @@ namespace Async
         public void Reset()
         {
         }
-    }
+    } 
 
     class Awaiter<T> : IAwaiter<T>, IEnumerator
     {
@@ -196,7 +201,7 @@ namespace Async
         private bool prevMain;
         IThreadScheduler prev;
         private IWaitable<T> waitable;
-     //   private Timeout? timeout;
+        //   private Timeout? timeout;
         private CancellationToken cancellationToken;
 
         public Awaiter(IWaitable<T> waitable, IThreadScheduler scheduler = null)
@@ -282,12 +287,11 @@ namespace Async
                             MainThreadScheduler.Current = next;
                             continuation();
                         }
-                        catch { throw; }
                         finally
                         {
                             MainThreadScheduler.Current = null;
                         }
-                    },null);
+                    }, null);
                 }
                 else
                 {
@@ -300,7 +304,6 @@ namespace Async
                                 MainThreadScheduler.Current = next;
                                 continuation();
                             }
-                            catch { throw; }
                             finally
                             {
                                 MainThreadScheduler.Current = null;
@@ -314,7 +317,6 @@ namespace Async
                             MainThreadScheduler.Current = next;
                             continuation();
                         }
-                        catch { throw; }
                         finally
                         {
                             MainThreadScheduler.Current = null;
@@ -344,13 +346,13 @@ namespace Async
                     else
                     {
                         cancellationToken.ThrowIfCancellationRequested();
-                       /* if (timeout.HasValue)
-                        {
-                            if (timeout.Value.IsTimeout())
-                            {
-                                Complete(default, null);
-                            }
-                        }*/
+                        /* if (timeout.HasValue)
+                         {
+                             if (timeout.Value.IsTimeout())
+                             {
+                                 Complete(default, null);
+                             }
+                         }*/
                     }
                 }
                 catch (Exception ex)
