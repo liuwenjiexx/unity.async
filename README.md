@@ -82,7 +82,7 @@ StartCoroutine(Async_To_Coroutine());
 
 ```c#
 //Sub Thread
-await new MainThread();
+await SwitchThread.Main;
 //Main Thread
 ```
 
@@ -94,7 +94,7 @@ await new MainThread();
 
 ```c#
 //Main Thread
-await new SubThread();
+await SwitchThread.Sub;
 //Sub Thread
 ```
 
@@ -105,7 +105,7 @@ await new SubThread();
 **主线程**
 
 ```c#
-await new MainThread();
+await SwitchThread.Main;
 //主线程
 await new WaitForEndOfFrame(); //运行在主线程
 //继续主线程
@@ -120,7 +120,7 @@ await new WaitForEndOfFrame(); //运行在主线程
 **子线程**
 
 ```c#
-await new SubThread();
+await SwitchThread.Sub;
 //子线程
 await new WaitForEndOfFrame(); //运行在主线程
 //切换回子线程
@@ -147,11 +147,11 @@ for (int i = 0; i < tasks.Length; i++)
 }
 
 //切换到子线程等待所有任务完成，不阻塞主线程
-await new SubThread();
+await SwitchThread.Sub;
 //Sub Thread
 Task.WaitAll(tasks);
 
-await new MainThread();
+await SwitchThread.Main;
 //Main Thread, 100ms after...
 ```
 所有 `tasks` 都在子线程运行，`await WaitFor.SubThread` 在子线程等待所有 `tasks` 任务完成，没有阻塞主线程
@@ -417,7 +417,7 @@ string result = await new WaitNotNull<string>(() => value);
 **切换到编辑器主线程**
 
 ```c#
-await new EditorMainThread();
+await SwitchThread.EditorMain;
 ```
 
 ### 等待对象

@@ -25,7 +25,7 @@ namespace Async.Tests
             {
                 Debug.Log("start frame: " + Time.frameCount);
                 AssertMainThread();
-                await new MainThread();
+                await SwitchThread.Main;
                 AssertMainThread();
                 Debug.Log("end frame: " + Time.frameCount);
 
@@ -38,8 +38,8 @@ namespace Async.Tests
             yield return new Func<Task>(async () =>
             {
                 AssertMainThread();
-                await new SubThread();
-                AssertNotMainThread();
+                await SwitchThread.Sub;
+                AssertSubThread();
             })().AsRoutine();
         }
 
@@ -48,8 +48,8 @@ namespace Async.Tests
         {
             yield return Task.Run(async () =>
             {
-                AssertNotMainThread();
-                await new MainThread();
+                AssertSubThread();
+                await SwitchThread.Main;
                 AssertMainThread();
             }).AsRoutine();
         }
@@ -60,9 +60,9 @@ namespace Async.Tests
             yield return Task.Run(async () =>
             {
                 Debug.Log("Start ThreadId: " + CurrentThreadId);
-                AssertNotMainThread();
-                await new SubThread();
-                AssertNotMainThread();
+                AssertSubThread();
+                await SwitchThread.Sub;
+                AssertSubThread();
                 Debug.Log("End ThreadId: " + CurrentThreadId);
             }).AsRoutine();
         }
@@ -80,14 +80,14 @@ namespace Async.Tests
                 float startTime = Time.time;
                 for (int i = 0; i < 10; i++)
                 {
-                    await new SubThread();
+                    await SwitchThread.Sub;
                     Debug.Log(i + " Sub Start. ThreadId: " + CurrentThreadId);
-                    AssertNotMainThread();
+                    AssertSubThread();
                     await Task.Delay(100);
-                    AssertNotMainThread();
+                    AssertSubThread();
                     Debug.Log(i + " Sub Done. ThreadId: " + CurrentThreadId);
                 }
-                await new MainThread();
+                await SwitchThread.Main;
                 AssertMainThread();
             //Total time 1s
             Debug.Log("All Sub Done. Time: " + (Time.time - startTime) + ", end frame: " + Time.frameCount);
@@ -112,9 +112,9 @@ namespace Async.Tests
                     tasks[i] = Task.Run(async () =>
                      {
                          Debug.Log(j + " Sub Start. ThreadId: " + CurrentThreadId);
-                         AssertNotMainThread();
+                         AssertSubThread();
                          await Task.Delay(100);
-                         AssertNotMainThread();
+                         AssertSubThread();
                          Debug.Log(j + " Sub Done. ThreadId: " + CurrentThreadId);
                      });
                 }
@@ -132,17 +132,17 @@ namespace Async.Tests
             yield return new Func<Task>(async () =>
             {
                 AssertMainThread();
-                await new SubThread();
-                AssertNotMainThread();
-                await new MainThread();
+                await SwitchThread.Sub;
+                AssertSubThread();
+                await SwitchThread.Main;
                 AssertMainThread();
-                await new SubThread();
-                AssertNotMainThread();
-                await new SubThread();
-                AssertNotMainThread();
-                await new MainThread();
+                await SwitchThread.Sub;
+                AssertSubThread();
+                await SwitchThread.Sub;
+                AssertSubThread();
+                await SwitchThread.Main;
                 AssertMainThread();
-                await new MainThread();
+                await SwitchThread.Main;
                 AssertMainThread();
             })().AsRoutine();
         }
@@ -152,7 +152,7 @@ namespace Async.Tests
         {
             yield return new Func<Task>(async () =>
             {
-                await new EditorMainThread();
+                await SwitchThread.EditorMain;
                 Assert.AreEqual(MainThreadScheduler.Current, EditorMainThreadScheduler.Instance, "Switch EditorMainThread");
                 AssertMainThread();
                 await new WaitForSeconds(0.2f);

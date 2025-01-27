@@ -161,7 +161,7 @@ namespace Async.Tests
                 Assert.AreEqual(3, result);
                 Debug.Log("Result: " + result);
                 Debug.Log("end thread: " + Thread.CurrentThread.ManagedThreadId);                
-                AssertNotMainThread();
+                AssertSubThread();
             }).AsRoutine();
 
         }

@@ -24,7 +24,7 @@ public class TestBase
         Assert.AreEqual(MainThreadId, CurrentThreadId);
     }
 
-    public void AssertNotMainThread()
+    public void AssertSubThread()
     {
         Assert.AreNotEqual(MainThreadId, CurrentThreadId);
     }

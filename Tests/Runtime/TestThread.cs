@@ -24,7 +24,7 @@ namespace Async.Tests
                 await Task.Run(() =>
                 {
                     Debug.Log("Sub Thread: " + CurrentThreadId);
-                    AssertNotMainThread();
+                    AssertSubThread();
                 });
                 AssertMainThread();
             })().AsRoutine();
@@ -50,10 +50,10 @@ namespace Async.Tests
             yield return Task.Run(async () =>
            {
                Debug.Log("Sub Thread: " + CurrentThreadId);
-               AssertNotMainThread();
+               AssertSubThread();
                await Task.Delay(100);
                Debug.Log("Sub Thread: " + CurrentThreadId);
-               AssertNotMainThread();
+               AssertSubThread();
            }).AsRoutine();
         }
 
@@ -65,19 +65,19 @@ namespace Async.Tests
             yield return Task.Run(async () =>
             {
                 Debug.Log("Sub Thread: " + CurrentThreadId);
-                AssertNotMainThread();
+                AssertSubThread();
                 int subThreadId = CurrentThreadId;
                 await Task.Run(async () =>
                 {
                     Debug.Log("Sub Thread1: " + CurrentThreadId);
-                    AssertNotMainThread();
+                    AssertSubThread();
                     await Task.Delay(100);
                     Debug.Log("Sub Thread2: " + CurrentThreadId);
-                    AssertNotMainThread();
+                    AssertSubThread();
                 });
 
                 Debug.Log("Sub Thread: " + CurrentThreadId);
-                AssertNotMainThread();
+                AssertSubThread();
             }).AsRoutine();
         }
 
@@ -92,10 +92,10 @@ namespace Async.Tests
                 await Task.Run(async () =>
                 {
                     Debug.Log("Sub Thread1: " + CurrentThreadId);
-                    AssertNotMainThread();
+                    AssertSubThread();
                     await Task.Delay(100);
                     Debug.Log("Sub Thread2: " + CurrentThreadId);
-                    AssertNotMainThread();
+                    AssertSubThread();
                 });
                 AssertMainThread();
             })().AsRoutine();

@@ -8,6 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
+
 namespace Async.Editor
 {
     class EditorMainThreadScheduler : IThreadScheduler
