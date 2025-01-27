@@ -5,12 +5,17 @@ using System.Threading;
 
 namespace Async.Editor
 {
-    class EditorMainThreadAwaiter : IAwaiter
+    class EditorMainThreadAwaiter : IAwaiter, IAwaitable
     {
         public bool IsCompleted
         {
             [DebuggerHidden]
             get => false;
+        }
+
+        public IAwaiter GetAwaiter()
+        {
+            return this;
         }
 
         [DebuggerHidden]

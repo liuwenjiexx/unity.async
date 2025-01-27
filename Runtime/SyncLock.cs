@@ -82,7 +82,7 @@ namespace Async
 
             private async void Timeout()
             {
-                await new MainThread();
+                await SwitchThread.Main;
 
                 if (state == STATE_DISPOSED)
                     return;

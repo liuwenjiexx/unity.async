@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.TestTools;
-using Unity.Async;
 using Assert = UnityEngine.Assertions.Assert;
 
-namespace Unity.Async.Tests
+namespace Async.Tests
 {
     public class TestThread : TestBase
     {
@@ -25,7 +24,7 @@ namespace Unity.Async.Tests
                 await Task.Run(() =>
                 {
                     Debug.Log("Sub Thread: " + CurrentThreadId);
-                    AssertNotMainThread();
+                    AssertSubThread();
                 });
                 AssertMainThread();
             })().AsRoutine();
@@ -51,10 +50,10 @@ namespace Unity.Async.Tests
             yield return Task.Run(async () =>
            {
                Debug.Log("Sub Thread: " + CurrentThreadId);
-               AssertNotMainThread();
+               AssertSubThread();
                await Task.Delay(100);
                Debug.Log("Sub Thread: " + CurrentThreadId);
-               AssertNotMainThread();
+               AssertSubThread();
            }).AsRoutine();
         }
 
@@ -66,19 +65,19 @@ namespace Unity.Async.Tests
             yield return Task.Run(async () =>
             {
                 Debug.Log("Sub Thread: " + CurrentThreadId);
-                AssertNotMainThread();
+                AssertSubThread();
                 int subThreadId = CurrentThreadId;
                 await Task.Run(async () =>
                 {
                     Debug.Log("Sub Thread1: " + CurrentThreadId);
-                    AssertNotMainThread();
+                    AssertSubThread();
                     await Task.Delay(100);
                     Debug.Log("Sub Thread2: " + CurrentThreadId);
-                    AssertNotMainThread();
+                    AssertSubThread();
                 });
 
                 Debug.Log("Sub Thread: " + CurrentThreadId);
-                AssertNotMainThread();
+                AssertSubThread();
             }).AsRoutine();
         }
 
@@ -93,10 +92,10 @@ namespace Unity.Async.Tests
                 await Task.Run(async () =>
                 {
                     Debug.Log("Sub Thread1: " + CurrentThreadId);
-                    AssertNotMainThread();
+                    AssertSubThread();
                     await Task.Delay(100);
                     Debug.Log("Sub Thread2: " + CurrentThreadId);
-                    AssertNotMainThread();
+                    AssertSubThread();
                 });
                 AssertMainThread();
             })().AsRoutine();

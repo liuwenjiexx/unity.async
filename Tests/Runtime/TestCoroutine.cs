@@ -4,12 +4,11 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using Unity.Async;
 using System.Threading;
 using UnityEngine.Profiling;
 using System;
 
-namespace Unity.Async.Tests
+namespace Async.Tests
 {
     public class TestCoroutine : TestBase
     {
@@ -161,7 +160,7 @@ namespace Unity.Async.Tests
                 Assert.AreEqual(3, result);
                 Debug.Log("Result: " + result);
                 Debug.Log("end thread: " + Thread.CurrentThread.ManagedThreadId);                
-                AssertNotMainThread();
+                AssertSubThread();
             }).AsRoutine();
 
         }

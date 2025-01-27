@@ -20,16 +20,30 @@ namespace Async
         [DebuggerHidden]
         public static IAwaiter GetAwaiter(this SubThread waitForSubThread) => SubThreadAwaiter;
 
+
+        //[DebuggerHidden]
+        //public static IAwaiter GetAwaiter(this SwitchThread switchThread)
+        //{
+        //    switch (switchThread)
+        //    {
+        //        case SwitchThread.Main:
+        //            return MainThreadAwaiter;
+        //        case SwitchThread.Sub:
+        //            return SubThreadAwaiter;
+        //    }
+        //    throw new NotImplementedException();
+        //}
+
         [DebuggerHidden]
         public static IAwaiter GetAwaiter(this IWaitable waitable)
         {
-            return new Awaiter(waitable,  MainThreadScheduler.GetDefault());
+            return new Awaiter(waitable, MainThreadScheduler.GetDefault());
         }
 
         [DebuggerHidden]
         public static IAwaiter<T> GetAwaiter<T>(this IWaitable<T> waitable)
         {
-            return new Awaiter<T>(waitable,  MainThreadScheduler.GetDefault());
+            return new Awaiter<T>(waitable, MainThreadScheduler.GetDefault());
         }
 
         /*

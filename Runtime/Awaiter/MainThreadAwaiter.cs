@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace Async
 {
-    class MainThreadAwaiter : IAwaiter
+    class MainThreadAwaiter : IAwaiter, IAwaitable
     {
 
         public bool IsCompleted
@@ -49,9 +49,12 @@ namespace Async
                     {
                         MainThreadScheduler.Current = null;
                     }
-                },null);
+                }, null);
             }
         }
+
+        public IAwaiter GetAwaiter() => this;
+
     }
 
 

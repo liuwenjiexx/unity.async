@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using Debug = UnityEngine.Debug;
 
-namespace Unity.Async.Tests
+namespace Async.Tests
 {
     public class WaitForUnity : TestBase
     {
@@ -107,9 +107,9 @@ namespace Unity.Async.Tests
             float t = Time.time;
             yield return Task.Run(async () =>
             {
-                AssertNotMainThread();
+                AssertSubThread();
                 await new WaitForSeconds(0.2f);
-                AssertNotMainThread();
+                AssertSubThread();
             }).AsRoutine();
             Assert.GreaterOrEqual(Time.time - t, 0.2f);
         }

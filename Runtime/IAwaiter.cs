@@ -21,4 +21,10 @@ namespace Async
         T GetResult();
     }
 
+
+    public interface IAwaitable
+    {
+        IAwaiter GetAwaiter();
+    }
+
 }

@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Async
 {
-    class SubThreadAwaiter : IAwaiter
+    class SubThreadAwaiter : IAwaiter, IAwaitable
     {
         private IThreadScheduler prev;
 
@@ -62,6 +62,7 @@ namespace Async
                 });
             }
         }
+        public IAwaiter GetAwaiter() => this;
     }
 
 }
